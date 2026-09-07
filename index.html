@@ -7,243 +7,223 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; }
+        body { font-family: 'Tajawal', sans-serif; }
         .chart-container { position: relative; height: 300px; width: 100%; }
+        @media print { .no-print { display: none; } }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased min-h-screen pb-12">
+<body class="bg-slate-50 text-slate-900 antialiased pb-12">
 
-    <!-- Header -->
-    <header class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div>
-            <h1 class="text-3xl font-bold text-slate-900">رادار المنافسين - التقرير الأسبوعي</h1>
-            <p class="text-slate-500 mt-1" id="current-date"></p>
-        </div>
-        <button onclick="downloadPDF()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg shadow-blue-200">
-            <span>📥 تحميل التقرير PDF</span>
-        </button>
-    </header>
-
-    <main id="dashboard-content" class="max-w-7xl mx-auto px-4 space-y-8">
+    <div id="report-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900">رادار المنافسين - التقرير الأسبوعي</h1>
+                <p id="current-date" class="text-slate-500 mt-1"></p>
+            </div>
+            <button onclick="downloadPDF()" class="no-print flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-md">
+                <span>📥 تحميل التقرير PDF</span>
+            </button>
+        </div>
+
         <!-- Executive KPIs -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
                 <p class="text-slate-500 text-sm font-medium">كثافة السوق الحالية</p>
-                <h3 class="text-2xl font-bold mt-2 text-orange-600">مرتفعة جداً</h3>
-                <div class="mt-4 w-full bg-slate-100 h-2 rounded-full">
-                    <div class="bg-orange-500 h-2 rounded-full" style="width: 85%"></div>
-                </div>
+                <p class="text-2xl font-bold text-red-600 mt-2">مرتفعة جداً</p>
+                <p class="text-xs text-slate-400 mt-1">بناءً على تكرار وسوم #HollywoodSmile</p>
             </div>
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <p class="text-slate-500 text-sm font-medium">المنافس الأكثر نشاطاً</p>
-                <h3 class="text-2xl font-bold mt-2 text-blue-600">متجر النخبة (Competitor 1)</h3>
-                <p class="text-xs text-slate-400 mt-1">+14 إعلان جديد هذا الأسبوع</p>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 border-b-4 border-b-blue-500">
+                <p class="text-slate-500 text-sm font-medium">المنافس الأكثر نشاطاً إعلانياً</p>
+                <p class="text-2xl font-bold text-slate-900 mt-2">DentalWorldTR</p>
+                <p class="text-xs text-slate-400 mt-1">متوسط 5 منشورات ترويجية يومياً</p>
             </div>
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <p class="text-slate-500 text-sm font-medium">الأعلى تفاعلاً</p>
-                <h3 class="text-2xl font-bold mt-2 text-purple-600">براند ستايل (Competitor 2)</h3>
-                <p class="text-xs text-slate-400 mt-1">متوسط تفاعل 4.2% على TikTok</p>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 border-b-4 border-b-purple-500">
+                <p class="text-slate-500 text-sm font-medium">أعلى معدل تفاعل (TikTok)</p>
+                <p class="text-2xl font-bold text-slate-900 mt-2">TheBentist</p>
+                <p class="text-xs text-slate-400 mt-1">فيديو واحد حقق 9.8 مليون مشاهدة</p>
             </div>
         </div>
 
         <!-- Competitor Analysis Cards -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             <!-- Competitor 1 -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-3 h-8 bg-[#3b82f6] rounded-full"></div>
-                    <h2 class="text-xl font-bold">متجر النخبة</h2>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xl">1</div>
+                    <h3 class="text-xl font-bold">TheBentist (التوجه التعليمي الساخر)</h3>
                 </div>
-                <div class="space-y-4">
-                    <div>
-                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">الاستراتيجية</span>
-                        <p class="text-sm mt-1">التركيز على "الجودة والرفاهية" واستهداف الفئة المخملية.</p>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-slate-500">زاوية البيع (Hook)</span>
-                        <p class="text-sm mt-1">"استثمر في راحتك" - الربط بين السعر المرتفع والقيمة طويلة الأمد.</p>
-                    </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-slate-50">
-                        <span class="text-sm text-slate-500">كثافة النشر:</span>
-                        <span class="text-sm font-bold text-green-600">عالية</span>
-                    </div>
-                    <div class="bg-slate-50 p-3 rounded-xl mt-4 border border-dashed border-slate-200">
-                        <p class="text-xs font-bold text-slate-400 mb-1">أفضل منشور (Instagram)</p>
-                        <p class="text-sm font-semibold text-slate-700">فيديو "خلف الكواليس" يظهر تفاصيل التصنيع اليدوي بدقة 4K.</p>
+                <div class="space-y-3">
+                    <p><span class="font-bold text-blue-600">الاستراتيجية:</span> التعليم من خلال الترفيه والرد على فيديوهات العملاء (Reaction).</p>
+                    <p><span class="font-bold text-blue-600">زاوية البيع:</span> "لا تدمر أسنانك الطبيعية" - التركيز على الخوف من النتائج الكارثية للعدسات الرخيصة.</p>
+                    <p><span class="font-bold text-blue-600">مستوى النشاط:</span> <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-sm">مرتفع جداً</span></p>
+                    <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                        <p class="text-sm font-bold text-slate-700 mb-1">أفضل منشور (TikTok):</p>
+                        <p class="text-sm text-slate-600 italic">"كيف تحطم أسنانها في ثوانٍ" - فيديو يحذر من الفينير غير الاحترافي (639 ألف إعجاب).</p>
                     </div>
                 </div>
             </div>
 
             <!-- Competitor 2 -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-3 h-8 bg-[#8b5cf6] rounded-full"></div>
-                    <h2 class="text-xl font-bold">براند ستايل</h2>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-xl">2</div>
+                    <h3 class="text-xl font-bold">DentalWorldTR (نموذج السياحة العلاجية)</h3>
                 </div>
-                <div class="space-y-4">
-                    <div>
-                        <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded">الاستراتيجية</span>
-                        <p class="text-sm mt-1">الهجوم السعري القوي والاعتماد الكلي على العروض المؤقتة.</p>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-slate-500">زاوية البيع (Hook)</span>
-                        <p class="text-sm mt-1">"عرض لا يتكرر" - خلق حالة من الخوف من ضياع الفرصة (FOMO).</p>
-                    </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-slate-50">
-                        <span class="text-sm text-slate-500">كثافة النشر:</span>
-                        <span class="text-sm font-bold text-blue-600">متوسطة</span>
-                    </div>
-                    <div class="bg-slate-50 p-3 rounded-xl mt-4 border border-dashed border-slate-200">
-                        <p class="text-xs font-bold text-slate-400 mb-1">أفضل منشور (TikTok)</p>
-                        <p class="text-sm font-semibold text-slate-700">تحدي "تنسيق الملابس في 30 ثانية" حصد 50 ألف إعجاب.</p>
+                <div class="space-y-3">
+                    <p><span class="font-bold text-purple-600">الاستراتيجية:</span> استعراض الفخامة والنتائج النهائية المبهرة في إسطنبول.</p>
+                    <p><span class="font-bold text-purple-600">زاوية البيع:</span> "ابتسامة هوليوود كعمل فني" - التركيز على الدقة في التفاصيل والجانب الجمالي البحت.</p>
+                    <p><span class="font-bold text-purple-600">مستوى النشاط:</span> <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-sm">مرتفع</span></p>
+                    <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                        <p class="text-sm font-bold text-slate-700 mb-1">أفضل منشور (TikTok):</p>
+                        <p class="text-sm text-slate-600 italic">"الجمال يكمن في التفاصيل" - استعراض حالة كاملة من البداية للنهاية (5 مليون مشاهدة).</p>
                     </div>
                 </div>
             </div>
 
             <!-- Competitor 3 -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-3 h-8 bg-[#f97316] rounded-full"></div>
-                    <h2 class="text-xl font-bold">مودرن شوب</h2>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-xl">3</div>
+                    <h3 class="text-xl font-bold">Rico Richards (صوت العميل/المؤثر)</h3>
                 </div>
-                <div class="space-y-4">
-                    <div>
-                        <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded">الاستراتيجية</span>
-                        <p class="text-sm mt-1">الاعتماد على المحتوى الذي يصنعه المستخدمون (UGC) والمؤثرين الصغار.</p>
+                <div class="space-y-3">
+                    <p><span class="font-bold text-orange-600">الاستراتيجية:</span> التوثيق اليومي الصادق (Daily Vlogs) لرحلة العلاج.</p>
+                    <p><span class="font-bold text-orange-600">زاوية البيع:</span> "هذه هي إشارتك لتبدأ" - التحفيز العاطفي وتقديم كود خصم للإحالة.</p>
+                    <p><span class="font-bold text-orange-600">مستوى النشاط:</span> <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-sm">متوسط</span></p>
+                    <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                        <p class="text-sm font-bold text-slate-700 mb-1">أفضل منشور (TikTok):</p>
+                        <p class="text-sm text-slate-600 italic">"رد فعلي على أسناني الجديدة" - فيديو عاطفي يركز على استعادة الثقة (1.8 مليون مشاهدة).</p>
                     </div>
-                    <div>
-                        <span class="text-xs font-bold text-slate-500">زاوية البيع (Hook)</span>
-                        <p class="text-sm mt-1">"جربوا معي.." - التركيز على المصداقية وتجربة العميل الحقيقية.</p>
-                    </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-slate-50">
-                        <span class="text-sm text-slate-500">كثافة النشر:</span>
-                        <span class="text-sm font-bold text-red-600">عالية جداً</span>
-                    </div>
-                    <div class="bg-slate-50 p-3 rounded-xl mt-4 border border-dashed border-slate-200">
-                        <p class="text-xs font-bold text-slate-400 mb-1">أفضل منشور (TikTok)</p>
-                        <p class="text-sm font-semibold text-slate-700">فيديو ردة فعل "فتح الصندوق" (Unboxing) لعميلة حقيقية.</p>
-                    </div>
+                </div>
+            </div>
+
+            <!-- Repeated Offers/Keywords -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span class="text-slate-400">🔍</span> الكلمات المفتاحية والعروض المتكررة
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Zirconium Crowns</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Emax Veneers</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Smile Makeover</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Painless Procedure</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Dental Tourism</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Natural Shade</span>
+                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Turkey Teeth</span>
+                </div>
+                <div class="mt-6">
+                    <p class="text-sm font-bold text-slate-700 mb-2 italic">أقوى العروض المرصودة:</p>
+                    <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+                        <li>استشارة مجانية عبر الواتساب (WhatsApp Consultation).</li>
+                        <li>باقات "الكل في واحد" (فندق + تنقلات + علاج).</li>
+                        <li>ضمان لمدة 10 سنوات على تيجان الزركونيوم.</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Charts Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Visual Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <h3 class="text-lg font-bold mb-6 italic">تحليل التفاعل مقابل عدد المنشورات</h3>
+                <h3 class="text-lg font-bold mb-6">معدل المشاهدات لكل 10 منشورات (بالمليون)</h3>
                 <div class="chart-container">
-                    <canvas id="engagementBarChart"></canvas>
+                    <canvas id="viewsChart"></canvas>
                 </div>
             </div>
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <h3 class="text-lg font-bold mb-6 italic">الحصة الإعلانية (Facebook Ads Share)</h3>
+                <h3 class="text-lg font-bold mb-6">توزيع الحصة الإعلانية بالسوق</h3>
                 <div class="chart-container">
-                    <canvas id="adsDoughnutChart"></canvas>
+                    <canvas id="adsShareChart"></canvas>
                 </div>
-            </div>
-        </div>
-
-        <!-- Repeated Offers & Keywords -->
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h3 class="text-lg font-bold mb-4">العروض المتكررة والكلمات المفتاحية الأكثر استخداماً</h3>
-            <div class="flex flex-wrap gap-3">
-                <span class="px-4 py-2 bg-slate-100 rounded-full text-sm font-semibold">اشتري 1 واحصل على 1 مجاناً</span>
-                <span class="px-4 py-2 bg-slate-100 rounded-full text-sm font-semibold">توصيل مجاني لليوم فقط</span>
-                <span class="px-4 py-2 bg-slate-100 rounded-full text-sm font-semibold">خصم لفترة محدودة</span>
-                <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">#أناقة</span>
-                <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">#تخفيضات_الموسم</span>
-                <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">#ضمان_ذهبي</span>
             </div>
         </div>
 
         <!-- AI Recommendations -->
-        <div class="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl">
-            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span>🚀</span> التوصيات الاستراتيجية لهذا الأسبوع
+        <div class="bg-slate-900 text-white rounded-2xl shadow-lg p-8 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl">💡</div>
+            <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                🚀 توصيات استراتيجية لمواجهة المنافسين هذا الأسبوع
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="space-y-3">
-                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center font-bold text-xl">1</div>
-                    <h4 class="font-bold text-lg">كسر حدة المنافسة السعرية</h4>
-                    <p class="text-slate-300 text-sm leading-relaxed">المنافس الثاني يضغط بشدة على السعر. بدلاً من خفض أسعارك، أطلق حملة "القيمة المضافة" (مثل ضمان ممتد أو هدية تقنية مع كل طلب) لجذب العملاء النوعيين.</p>
+                <div class="space-y-2">
+                    <div class="text-blue-400 font-bold text-lg underline italic">1. استراتيجية "التثقيف الوقائي"</div>
+                    <p class="text-slate-300 text-sm leading-relaxed">قم بإنتاج فيديوهات قصيرة توضح الفرق بين "برد الأسنان الجائر" للتيجان وبين "الفينير المحافظ". المنافسون (مثل TheBentist) يحصدون ملايين المشاهدات من خلال إخافة الناس من الإجراءات الخاطئة. كن أنت المرجع الموثوق الذي يشرح كيف تحافظ على سلامة السن الطبيعي.</p>
                 </div>
-                <div class="space-y-3">
-                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center font-bold text-xl">2</div>
-                    <h4 class="font-bold text-lg">استنساخ نجاح الـ UGC</h4>
-                    <p class="text-slate-300 text-sm leading-relaxed">نجاح المنافس الثالث على TikTok يعتمد على عفوية المحتوى. ننصح بالتعاقد مع 5 مؤثرين صغار (Micro-influencers) لعمل فيديوهات Unboxing غير مصطنعة هذا الأسبوع.</p>
+                <div class="space-y-2">
+                    <div class="text-blue-400 font-bold text-lg underline italic">2. محاكاة الـ "UGC" الواقعي</div>
+                    <p class="text-slate-300 text-sm leading-relaxed">توقف عن نشر الصور المثالية فقط. ابدأ بنشر فيديوهات لعملاء يتحدثون عن "مرحلة التعافي" أو "سهولة الأكل بعد العملية" كما يفعل Rico Richards. هذا النوع من المحتوى يبني ثقة تتجاوز الصور الاحترافية الباردة للمنافسين مثل DentalWorldTR.</p>
                 </div>
-                <div class="space-y-3">
-                    <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center font-bold text-xl">3</div>
-                    <h4 class="font-bold text-lg">تكتيك "ساعة الذروة" الإعلانية</h4>
-                    <p class="text-slate-300 text-sm leading-relaxed">تشير البيانات إلى أن المنافسين يكثفون النشر بين الساعة 7 و 9 مساءً. ابدأ حملاتك الممولة قبلهم بساعة واحدة (الساعة 6 مساءً) للاستحواذ على انتباه الجمهور مبكراً.</p>
+                <div class="space-y-2">
+                    <div class="text-blue-400 font-bold text-lg underline italic">3. استهداف كلمات "اللا حفر" (Non-Prep)</div>
+                    <p class="text-slate-300 text-sm leading-relaxed">هناك طلب هائل متزايد على تقنيات "بدون حفر وبدون إبر". ركز حملاتك الإعلانية هذا الأسبوع على مصطلح "عدسات لا تتطلب برد الأسنان" لاختراق الشريحة المتخوفة من "أسنان تركيا" التقليدية.</p>
                 </div>
             </div>
         </div>
 
-    </main>
+    </div>
 
     <script>
         // Set current date
-        document.getElementById('current-date').innerText = new Intl.DateTimeFormat('ar-EG', { dateStyle: 'full' }).format(new Date());
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('ar-EG', options);
 
-        // Engagement Bar Chart
-        const barCtx = document.getElementById('engagementBarChart').getContext('2d');
-        new Chart(barCtx, {
+        // Chart 1: Views
+        const ctxViews = document.getElementById('viewsChart').getContext('2d');
+        new Chart(ctxViews, {
             type: 'bar',
             data: {
-                labels: ['متجر النخبة', 'براند ستايل', 'مودرن شوب'],
-                datasets: [
-                    {
-                        label: 'عدد المنشورات',
-                        data: [45, 28, 52],
-                        backgroundColor: '#94a3b8',
-                        borderRadius: 8
-                    },
-                    {
-                        label: 'معدل التفاعل (%)',
-                        data: [3.2, 4.8, 4.1],
-                        backgroundColor: '#3b82f6',
-                        borderRadius: 8
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { position: 'bottom', rtl: true, labels: { font: { family: 'Cairo' } } } },
-                scales: { y: { beginAtZero: true } }
-            }
-        });
-
-        // Ads Doughnut Chart
-        const doughnutCtx = document.getElementById('adsDoughnutChart').getContext('2d');
-        new Chart(doughnutCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['متجر النخبة', 'براند ستايل', 'مودرن شوب', 'آخرون'],
+                labels: ['TheBentist', 'DentalWorld', 'Rico Richards', 'أنت (المستهدف)'],
                 datasets: [{
-                    data: [40, 25, 20, 15],
-                    backgroundColor: ['#3b82f6', '#8b5cf6', '#f97316', '#e2e8f0'],
-                    borderWidth: 0
+                    label: 'عدد المشاهدات (مليون)',
+                    data: [14.2, 5.8, 2.1, 0.5],
+                    backgroundColor: ['#3b82f6', '#8b5cf6', '#f97316', '#10b981'],
+                    borderRadius: 8
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { position: 'bottom', rtl: true, labels: { font: { family: 'Cairo' } } } },
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Chart 2: Ads Share
+        const ctxAds = document.getElementById('adsShareChart').getContext('2d');
+        new Chart(ctxAds, {
+            type: 'doughnut',
+            data: {
+                labels: ['DentalWorldTR', 'Done In One', 'VipDental', 'آخرون'],
+                datasets: [{
+                    data: [45, 25, 20, 10],
+                    backgroundColor: ['#3b82f6', '#8b5cf6', '#f97316', '#cbd5e1'],
+                    borderWidth: 0,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 20 } }
+                },
                 cutout: '70%'
             }
         });
 
         // PDF Download Function
         function downloadPDF() {
-            const element = document.getElementById('dashboard-content');
+            const element = document.getElementById('report-content');
             const opt = {
                 margin: 10,
-                filename: 'Competitor_Analysis_Report.pdf',
+                filename: 'Weekly_Competitor_Analysis_AR.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
