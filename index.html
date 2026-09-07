@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رادار المنافسين - التقرير الأسبوعي</title>
+    <title>رادار المنافسين - إعلانات ميتا وانستغرام</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -11,210 +11,216 @@
     <style>
         body { font-family: 'Tajawal', sans-serif; }
         .chart-container { position: relative; height: 300px; width: 100%; }
-        @media print { .no-print { display: none; } }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased pb-12">
 
-    <div id="report-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div>
-                <h1 class="text-3xl font-bold text-slate-900">رادار المنافسين - التقرير الأسبوعي</h1>
-                <p id="current-date" class="text-slate-500 mt-1"></p>
+                <h1 class="text-2xl font-bold text-slate-900">رادار المنافسين - إعلانات ميتا وانستغرام</h1>
+                <p class="text-slate-500 text-sm mt-1">تحديث: 9 سبتمبر 2024</p>
             </div>
-            <button onclick="downloadPDF()" class="no-print flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all shadow-md">
+            <button onclick="downloadPDF()" class="bg-slate-900 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-800 transition-all">
                 <span>📥 تحميل التقرير PDF</span>
             </button>
         </div>
+    </header>
+
+    <main id="report-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <!-- Executive KPIs -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <p class="text-slate-500 text-sm font-medium">كثافة السوق الحالية</p>
-                <p class="text-2xl font-bold text-red-600 mt-2">مرتفعة جداً</p>
-                <p class="text-xs text-slate-400 mt-1">بناءً على تكرار وسوم #HollywoodSmile</p>
+                <p class="text-slate-500 text-sm font-medium mb-1">كثافة السوق الحالية</p>
+                <h3 class="text-3xl font-bold text-slate-900">عالية جداً</h3>
+                <p class="text-orange-600 text-xs mt-2 font-bold italic">تركيز مكثف على سياحة الأسنان (المملكة المتحدة/أوروبا)</p>
             </div>
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 border-b-4 border-b-blue-500">
-                <p class="text-slate-500 text-sm font-medium">المنافس الأكثر نشاطاً إعلانياً</p>
-                <p class="text-2xl font-bold text-slate-900 mt-2">DentalWorldTR</p>
-                <p class="text-xs text-slate-400 mt-1">متوسط 5 منشورات ترويجية يومياً</p>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <p class="text-slate-500 text-sm font-medium mb-1">المنافس الأكثر نشاطاً</p>
+                <h3 class="text-3xl font-bold text-blue-600">Sevil Smile</h3>
+                <p class="text-slate-400 text-xs mt-2 italic">تفاعل عضوي يتجاوز 150 تفاعل/بوست</p>
             </div>
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 border-b-4 border-b-purple-500">
-                <p class="text-slate-500 text-sm font-medium">أعلى معدل تفاعل (TikTok)</p>
-                <p class="text-2xl font-bold text-slate-900 mt-2">TheBentist</p>
-                <p class="text-xs text-slate-400 mt-1">فيديو واحد حقق 9.8 مليون مشاهدة</p>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <p class="text-slate-500 text-sm font-medium mb-1">أعلى زاوية بيع جذباً</p>
+                <h3 class="text-3xl font-bold text-purple-600">رحلة المريض</h3>
+                <p class="text-slate-400 text-xs mt-2 italic">التركيز على تجربة السفر والضيافة وليس فقط العلاج</p>
             </div>
         </div>
 
-        <!-- Competitor Analysis Cards -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            <!-- Competitor 1 -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xl">1</div>
-                    <h3 class="text-xl font-bold">TheBentist (التوجه التعليمي الساخر)</h3>
-                </div>
-                <div class="space-y-3">
-                    <p><span class="font-bold text-blue-600">الاستراتيجية:</span> التعليم من خلال الترفيه والرد على فيديوهات العملاء (Reaction).</p>
-                    <p><span class="font-bold text-blue-600">زاوية البيع:</span> "لا تدمر أسنانك الطبيعية" - التركيز على الخوف من النتائج الكارثية للعدسات الرخيصة.</p>
-                    <p><span class="font-bold text-blue-600">مستوى النشاط:</span> <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-sm">مرتفع جداً</span></p>
-                    <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                        <p class="text-sm font-bold text-slate-700 mb-1">أفضل منشور (TikTok):</p>
-                        <p class="text-sm text-slate-600 italic">"كيف تحطم أسنانها في ثوانٍ" - فيديو يحذر من الفينير غير الاحترافي (639 ألف إعجاب).</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Meta Ads Section -->
+            <section class="space-y-6">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-blue-600">
+                        <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
+                        قسم تحليل إعلانات ميتا (Meta Ads)
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="border-r-4 border-slate-100 pr-4">
+                            <h4 class="font-bold text-slate-800">استراتيجية الزوايا البيعية (Hooks):</h4>
+                            <ul class="text-sm text-slate-600 mt-2 list-disc list-inside space-y-1 leading-relaxed">
+                                <li><span class="font-bold">Dentakay:</span> تركز على الموثوقية الطبية (اعتماد JCI) للجذب المؤسسي.</li>
+                                <li><span class="font-bold">Sevil Smile:</span> تستهدف "التخصيص" (Digital Smile Design) وإزالة مخاوف "الأسنان الاصطناعية".</li>
+                                <li><span class="font-bold">DentSpa:</span> تعتمد زاوية "الراحة والاستجمام" (Relax) في اسطنبول لتقليل فوبيا طبيب الأسنان.</li>
+                            </ul>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-slate-800">أفضل الإعلانات أداءً:</h4>
+                            
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                <p class="text-sm font-bold text-blue-600 mb-1">Sevil Smile - استراتيجية التنوع</p>
+                                <p class="text-xs text-slate-600 mb-2 leading-relaxed">منشور استعراضي (Sidecar) يعرض 10 خيارات مختلفة للابتسامات (Shade/Style) مما يعطي العميل شعوراً بالتحكم والاختيار.</p>
+                                <a href="https://www.instagram.com/p/DcMKxaWCEZ_/" target="_blank" class="text-blue-600 underline font-bold text-xs">عرض المصدر 🔗</a>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                <p class="text-sm font-bold text-purple-600 mb-1">Dentakay - إثبات الجودة</p>
+                                <p class="text-xs text-slate-600 mb-2 leading-relaxed">سلسلة منشورات مكثفة عن اعتماد JCI الدولي لتعزيز الثقة قبل إطلاق حملات العروض.</p>
+                                <a href="https://www.instagram.com/p/DcS6er-g5ql/" target="_blank" class="text-blue-600 underline font-bold text-xs">عرض المصدر 🔗</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Competitor 2 -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-xl">2</div>
-                    <h3 class="text-xl font-bold">DentalWorldTR (نموذج السياحة العلاجية)</h3>
-                </div>
-                <div class="space-y-3">
-                    <p><span class="font-bold text-purple-600">الاستراتيجية:</span> استعراض الفخامة والنتائج النهائية المبهرة في إسطنبول.</p>
-                    <p><span class="font-bold text-purple-600">زاوية البيع:</span> "ابتسامة هوليوود كعمل فني" - التركيز على الدقة في التفاصيل والجانب الجمالي البحت.</p>
-                    <p><span class="font-bold text-purple-600">مستوى النشاط:</span> <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-sm">مرتفع</span></p>
-                    <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                        <p class="text-sm font-bold text-slate-700 mb-1">أفضل منشور (TikTok):</p>
-                        <p class="text-sm text-slate-600 italic">"الجمال يكمن في التفاصيل" - استعراض حالة كاملة من البداية للنهاية (5 مليون مشاهدة).</p>
+            <!-- IG Organic Section -->
+            <section class="space-y-6">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-purple-600">
+                        <span class="w-2 h-6 bg-purple-600 rounded-full"></span>
+                        قسم تحليل بوستات انستغرام (Organic)
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-xl text-center">
+                                <p class="text-xs text-slate-500 mb-1">متوسط التفاعل</p>
+                                <p class="text-xl font-bold text-slate-900">عالي (Reels)</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl text-center">
+                                <p class="text-xs text-slate-500 mb-1">أكثر نوع محتوى</p>
+                                <p class="text-xl font-bold text-slate-900">فيديو (Vlogs)</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider">أفضل المنشورات العضوية تفاعلاً:</h4>
+                            
+                            <div class="flex gap-4 items-start p-3 hover:bg-slate-50 rounded-lg transition-colors border border-transparent hover:border-slate-100">
+                                <div class="bg-orange-100 text-orange-600 p-2 rounded-lg font-bold text-xs">155❤️</div>
+                                <div>
+                                    <p class="text-sm font-bold leading-tight mb-1">مقارنة 10 أنماط ابتسامات مختلفة</p>
+                                    <p class="text-xs text-slate-500 mb-1">Sevil Smile Studio - استراتيجية الخيارات المتعددة</p>
+                                    <a href="https://www.instagram.com/p/DcMKxaWCEZ_/" target="_blank" class="text-blue-600 underline font-bold text-xs">عرض المصدر 🔗</a>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4 items-start p-3 hover:bg-slate-50 rounded-lg transition-colors border border-transparent hover:border-slate-100">
+                                <div class="bg-orange-100 text-orange-600 p-2 rounded-lg font-bold text-xs">115❤️</div>
+                                <div>
+                                    <p class="text-sm font-bold leading-tight mb-1">رحلة مريضة من ألمانيا (Antoinette)</p>
+                                    <p class="text-xs text-slate-500 mb-1">تركيز على الفلوق واليوتيوب لتوثيق المصداقية</p>
+                                    <a href="https://www.instagram.com/p/DcjYeZuo7Hl/" target="_blank" class="text-blue-600 underline font-bold text-xs">عرض المصدر 🔗</a>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4 items-start p-3 hover:bg-slate-50 rounded-lg transition-colors border border-transparent hover:border-slate-100">
+                                <div class="bg-orange-100 text-orange-600 p-2 rounded-lg font-bold text-xs">50❤️</div>
+                                <div>
+                                    <p class="text-sm font-bold leading-tight mb-1">تحول James (قبل وبعد)</p>
+                                    <p class="text-xs text-slate-500 mb-1">Dentakay - تركيز على التفاصيل الطبية والدقة</p>
+                                    <a href="https://www.instagram.com/p/Dc0wxdaDXAS/" target="_blank" class="text-blue-600 underline font-bold text-xs">عرض المصدر 🔗</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
+        </div>
 
-            <!-- Competitor 3 -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-xl">3</div>
-                    <h3 class="text-xl font-bold">Rico Richards (صوت العميل/المؤثر)</h3>
-                </div>
-                <div class="space-y-3">
-                    <p><span class="font-bold text-orange-600">الاستراتيجية:</span> التوثيق اليومي الصادق (Daily Vlogs) لرحلة العلاج.</p>
-                    <p><span class="font-bold text-orange-600">زاوية البيع:</span> "هذه هي إشارتك لتبدأ" - التحفيز العاطفي وتقديم كود خصم للإحالة.</p>
-                    <p><span class="font-bold text-orange-600">مستوى النشاط:</span> <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-sm">متوسط</span></p>
-                    <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                        <p class="text-sm font-bold text-slate-700 mb-1">أفضل منشور (TikTok):</p>
-                        <p class="text-sm text-slate-600 italic">"رد فعلي على أسناني الجديدة" - فيديو عاطفي يركز على استعادة الثقة (1.8 مليون مشاهدة).</p>
-                    </div>
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <h3 class="font-bold mb-4">مقارنة حجم التفاعل (Likes Count)</h3>
+                <div class="chart-container">
+                    <canvas id="engagementChart"></canvas>
                 </div>
             </div>
-
-            <!-- Repeated Offers/Keywords -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                    <span class="text-slate-400">🔍</span> الكلمات المفتاحية والعروض المتكررة
-                </h3>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Zirconium Crowns</span>
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Emax Veneers</span>
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Smile Makeover</span>
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Painless Procedure</span>
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Dental Tourism</span>
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Natural Shade</span>
-                    <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">Turkey Teeth</span>
+                <h3 class="font-bold mb-4 text-center">الكلمات الأكثر تكراراً في الإعلانات</h3>
+                <div class="flex flex-wrap gap-2 justify-center mt-8">
+                    <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-bold border border-blue-100 underline decoration-2">Smile Journey</span>
+                    <span class="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-sm font-bold border border-purple-100">Natural Look</span>
+                    <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm font-bold border border-slate-200">Consultation</span>
+                    <span class="px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-sm font-bold border border-orange-100">Veneers</span>
+                    <span class="px-3 py-1 bg-green-50 text-green-600 rounded-full text-sm font-bold border border-green-100">Confidence</span>
+                    <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold border border-blue-100">Digital Smile Design</span>
                 </div>
-                <div class="mt-6">
-                    <p class="text-sm font-bold text-slate-700 mb-2 italic">أقوى العروض المرصودة:</p>
-                    <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
-                        <li>استشارة مجانية عبر الواتساب (WhatsApp Consultation).</li>
-                        <li>باقات "الكل في واحد" (فندق + تنقلات + علاج).</li>
-                        <li>ضمان لمدة 10 سنوات على تيجان الزركونيوم.</li>
+                <div class="mt-8 pt-6 border-t border-slate-100">
+                    <p class="text-sm font-bold mb-2">العروض المتكررة:</p>
+                    <ul class="text-xs text-slate-600 space-y-2">
+                        <li class="flex items-center gap-2">✅ استشارة طبية مجانية (Bio link)</li>
+                        <li class="flex items-center gap-2">✅ باقة الانتقالات من المطار والضيافة</li>
+                        <li class="flex items-center gap-2">✅ ضمان مدى الحياة على الزرعات (Straumann)</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Visual Charts Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <h3 class="text-lg font-bold mb-6">معدل المشاهدات لكل 10 منشورات (بالمليون)</h3>
-                <div class="chart-container">
-                    <canvas id="viewsChart"></canvas>
+        <!-- AI Strategic Recommendations -->
+        <div class="bg-slate-900 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
+            <div class="relative z-10">
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <span class="bg-white text-slate-900 w-8 h-8 flex items-center justify-center rounded-full text-lg">💡</span>
+                    توصيات رادار الذكاء الاصطناعي الاستراتيجية (هذا الأسبوع)
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                        <p class="text-orange-400 font-bold mb-2">1. تحويل "العلاج" إلى "رحلة":</p>
+                        <p class="text-sm text-slate-300 leading-relaxed">المنافس Sevil ينجح بجذب الجمهور عبر "فلوقات" السفر. قم فوراً بنشر محتوى يوثق تجربة المريض منذ لحظة الوصول للمطار والسيارة الفاخرة، وليس فقط صور الكرسي الطبي.</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                        <p class="text-orange-400 font-bold mb-2">2. استهداف مخاوف "الأسنان المزيفة":</p>
+                        <p class="text-sm text-slate-300 leading-relaxed">هناك طلب هائل على المظهر الطبيعي (Natural Look) كما يظهر في DentSpa. استخدم حملة إعلانية بعنوان "ابتسامة لا يشعر بها أحد سواك" مع فيديو يركز على تفاصيل الشفافية في الفينير.</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                        <p class="text-orange-400 font-bold mb-2">3. استراتيجية الـ Sidecar للابتسامات:</p>
+                        <p class="text-sm text-slate-300 leading-relaxed">أعلى تفاعل كان لمنشور يعرض 10 خيارات. نفذ منشوراً تفاعلياً: "اكتشف شكل ابتسامتك المثالي" واعرض 5 أشكال مختلفة، واطلب من الجمهور التعليق بالرقم المفضل لزيادة التفاعل العضوي.</p>
+                    </div>
                 </div>
             </div>
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <h3 class="text-lg font-bold mb-6">توزيع الحصة الإعلانية بالسوق</h3>
-                <div class="chart-container">
-                    <canvas id="adsShareChart"></canvas>
-                </div>
-            </div>
+            <!-- Decorative circle -->
+            <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
         </div>
 
-        <!-- AI Recommendations -->
-        <div class="bg-slate-900 text-white rounded-2xl shadow-lg p-8 relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl">💡</div>
-            <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
-                🚀 توصيات استراتيجية لمواجهة المنافسين هذا الأسبوع
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="space-y-2">
-                    <div class="text-blue-400 font-bold text-lg underline italic">1. استراتيجية "التثقيف الوقائي"</div>
-                    <p class="text-slate-300 text-sm leading-relaxed">قم بإنتاج فيديوهات قصيرة توضح الفرق بين "برد الأسنان الجائر" للتيجان وبين "الفينير المحافظ". المنافسون (مثل TheBentist) يحصدون ملايين المشاهدات من خلال إخافة الناس من الإجراءات الخاطئة. كن أنت المرجع الموثوق الذي يشرح كيف تحافظ على سلامة السن الطبيعي.</p>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-blue-400 font-bold text-lg underline italic">2. محاكاة الـ "UGC" الواقعي</div>
-                    <p class="text-slate-300 text-sm leading-relaxed">توقف عن نشر الصور المثالية فقط. ابدأ بنشر فيديوهات لعملاء يتحدثون عن "مرحلة التعافي" أو "سهولة الأكل بعد العملية" كما يفعل Rico Richards. هذا النوع من المحتوى يبني ثقة تتجاوز الصور الاحترافية الباردة للمنافسين مثل DentalWorldTR.</p>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-blue-400 font-bold text-lg underline italic">3. استهداف كلمات "اللا حفر" (Non-Prep)</div>
-                    <p class="text-slate-300 text-sm leading-relaxed">هناك طلب هائل متزايد على تقنيات "بدون حفر وبدون إبر". ركز حملاتك الإعلانية هذا الأسبوع على مصطلح "عدسات لا تتطلب برد الأسنان" لاختراق الشريحة المتخوفة من "أسنان تركيا" التقليدية.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <script>
-        // Set current date
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString('ar-EG', options);
-
-        // Chart 1: Views
-        const ctxViews = document.getElementById('viewsChart').getContext('2d');
-        new Chart(ctxViews, {
+        // Chart Initialization
+        const ctx = document.getElementById('engagementChart').getContext('2d');
+        new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['TheBentist', 'DentalWorld', 'Rico Richards', 'أنت (المستهدف)'],
+                labels: ['Dentakay', 'Sevil Smile', 'DentSpa'],
                 datasets: [{
-                    label: 'عدد المشاهدات (مليون)',
-                    data: [14.2, 5.8, 2.1, 0.5],
-                    backgroundColor: ['#3b82f6', '#8b5cf6', '#f97316', '#10b981'],
-                    borderRadius: 8
+                    label: 'أعلى تفاعل مسجل (لايكات)',
+                    data: [50, 155, 33],
+                    backgroundColor: ['#3b82f6', '#8b5cf6', '#f97316'],
+                    borderRadius: 12,
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
                 scales: {
-                    y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+                    y: { beginAtZero: true, grid: { display: false } },
                     x: { grid: { display: false } }
-                }
-            }
-        });
-
-        // Chart 2: Ads Share
-        const ctxAds = document.getElementById('adsShareChart').getContext('2d');
-        new Chart(ctxAds, {
-            type: 'doughnut',
-            data: {
-                labels: ['DentalWorldTR', 'Done In One', 'VipDental', 'آخرون'],
-                datasets: [{
-                    data: [45, 25, 20, 10],
-                    backgroundColor: ['#3b82f6', '#8b5cf6', '#f97316', '#cbd5e1'],
-                    borderWidth: 0,
-                    hoverOffset: 15
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 20 } }
                 },
-                cutout: '70%'
+                plugins: { legend: { display: false } }
             }
         });
 
@@ -223,7 +229,7 @@
             const element = document.getElementById('report-content');
             const opt = {
                 margin: 10,
-                filename: 'Weekly_Competitor_Analysis_AR.pdf',
+                filename: 'Competitor_Radar_Report.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
